@@ -143,6 +143,8 @@ afterEach(function() {
 });
 ```
 
+You can read more about it <a href="https://facebook.github.io/jest/docs/en/api.html#aftereachfn">here.</a>
+
 ### Instructions
 
 * Open `cart.test.js`.
