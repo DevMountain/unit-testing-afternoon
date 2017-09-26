@@ -99,6 +99,8 @@ describe('Quantity Functions:', function() {
 
 </details>
 
+### Solution
+
 <details>
 
 <summary> <code> cart.test.js </code> </summary>
