@@ -132,8 +132,11 @@ In this step, we'll begin to add the tests into `cart.test.js` by using a list o
   * This test should `expect` `cart` to be an empty Array.
 * Create a test for the `total` property: 
   * This test should `expect` `total` to be `0`.
-    * Hint: `===`.
-* 
+    * Hint: test for value and type. `"0"` does not equal `0`.
+* Create a test for the `addToCart` method:
+  * The method should `push` a `car` object to the end of the `cart` array.
+  * This test should `expect` the cart length to increase by 1.
+  * This test should `expect` the `car` object to appear at the end of the `cart` array.
 
 
 

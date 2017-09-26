@@ -4,11 +4,11 @@ module.exports = {
   cart: [],
   total: 0,
 
-  addToCart: function() {
-
+  addToCart: function( car ) {
+    this.cart.push( car );
   },
 
-  removeFromCart: function() {
+  removeFromCart: function( index ) {
 
   },
 
