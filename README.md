@@ -22,9 +22,9 @@ In this step, we'll create a `package.json` and install `jest` so that we can cr
 
 <br />
 
+Let's begin by initialzing a `package.json` file using `npm`. In a terminal, we can run the command `npm init -y` to get a `package.json` file with all the default values. Once a `package.json` file is created, we can install and save `jest` into our project. We'll want to save `jest` as a development dependency. Using `npm` in a terminal, we can `npm install --save-dev jest` to install and save it. 
 
-
-</details>
+Lastly, we'll just need to update the `test` script in `package.json` to be `"jest"`. This will allow us to run `npm test` in a terminal.
 
 ### Solution
 
