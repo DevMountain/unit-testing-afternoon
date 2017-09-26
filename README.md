@@ -134,6 +134,15 @@ describe('Cart Methods:', function() {
 
 In this step, we'll begin to add the tests into `cart.test.js` by using a list of specifications. This is similiar to how you would be asked to make Unit Tests on the job. You'll have the freedom to name the test whatever you want. Therefore, when viewing solutions pay attention to the logic of the test case rather than the name of it.
 
+In order to complete this step, you'll have to use Jest syntax that you may haven't seen yet. When testing the `methods` in `cart.js`, you'll need to reset the `cart` and `total` properties after each test. In order to do this, you can use the `afterEach` Jest method. The first argument is a callback function. This function will be called `after` `each` test. Here's an example of its syntax:
+
+```js
+afterEach(function() {
+  // reset total property
+  // reset cart to empty array
+});
+```
+
 ### Instructions
 
 * Open `cart.test.js`.
