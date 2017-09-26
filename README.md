@@ -73,6 +73,7 @@ In this step, we'll begin creating Unit Tests for `cart.js` by creating the skel
 * Create a `cart.test.js` file.
 * Open `cart.test.js`.
 * Require `cart.js` into the file.
+* Require `data/cars.js` into the file.
 * Create a test group called `Quantity Functions:`.
 
 <details>
@@ -81,16 +82,18 @@ In this step, we'll begin creating Unit Tests for `cart.js` by creating the skel
 
 <br />
 
-Let's begin by creating a `cart.test.js` file at the root level of the project. This is where we'll write all the tests for the `cart.js` file. We added a `.test` to the file extension so that Jest will be able to find this test file when executing. We could of also made a `__tests__` folder and stuck a JavaScript file in there. Now that we have a test file, let's require the module we want to test.
+Let's begin by creating a `cart.test.js` file at the root level of the project. This is where we'll write all the tests for the `cart.js` file. We added a `.test` to the file extension so that Jest will be able to find this test file when executing. We could of also made a `__tests__` folder and stuck a JavaScript file in there. Now that we have a test file, let's require the module we want to test. We'll also want to require `data/cars.js` so we have the same dataset that `cart.js` is going to be working with.
 
 ```js
 const cart = require('./cart');
+const cars = requier('./data/cars.js');
 ```
 
 When we require `cart.js` we gain access to all of its exported methods. You can view how many methods there are by opening `cart.js`. We can see that there are two methods that could fit inside a test group, the `increaseQuantity` and `decreaseQuantity` method. Using the `describe` keyword we can create a group for these two methods. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
 
 ```js
 const cart = require('./cart');
+const cars = requier('./data/cars.js');
 
 describe('Quantity Functions:', function() {
   
@@ -107,6 +110,7 @@ describe('Quantity Functions:', function() {
 
 ```js
 const cart = require('./cart');
+const cars = requier('./data/cars.js');
 
 describe('Quantity Functions:', function() {
   
@@ -115,7 +119,21 @@ describe('Quantity Functions:', function() {
 
 </details>
 
+## Step 3
 
+### Summary
+
+In this step, we'll begin to add the tests into `cart.test.js` by using a list of specifications. This is similiar to how you would be asked to make Unit Tests on the job.
+
+### Instructions
+
+* Open `cart.test.js`.
+* Create a test for the `cart` property:
+  * This test should `expect` `cart` to be an empty Array.
+* Create a test for the `total` property: 
+  * This test should `expect` `total` to be `0`.
+    * Hint: `===`.
+* 
 
 
 
