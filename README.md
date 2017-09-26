@@ -74,7 +74,7 @@ In this step, we'll begin creating Unit Tests for `cart.js` by creating the skel
 * Open `cart.test.js`.
 * Require `cart.js` into the file.
 * Require `data/cars.js` into the file.
-* Create a test group called `Quantity Functions:`.
+* Create a test group called `Cart Methods:`.
 
 <details>
 
@@ -89,13 +89,13 @@ const cart = require('./cart');
 const cars = requier('./data/cars.js');
 ```
 
-When we require `cart.js` we gain access to all of its exported methods. You can view how many methods there are by opening `cart.js`. We can see that there are two methods that could fit inside a test group, the `increaseQuantity` and `decreaseQuantity` method. Using the `describe` keyword we can create a group for these two methods. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
+When we require `cart.js` we gain access to all of its exported methods. You can view how many methods there are by opening `cart.js`. We can group these test cases into a group called `Cart Methods:` by using the `describe` keyword. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
 
 ```js
 const cart = require('./cart');
 const cars = requier('./data/cars.js');
 
-describe('Quantity Functions:', function() {
+describe('Cart Methods:', function() {
   
 });
 ```
@@ -112,7 +112,7 @@ describe('Quantity Functions:', function() {
 const cart = require('./cart');
 const cars = requier('./data/cars.js');
 
-describe('Quantity Functions:', function() {
+describe('Cart Methods:', function() {
   
 });
 ```
