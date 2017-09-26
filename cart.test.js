@@ -3,7 +3,7 @@ const cars = require('./data/cars');
 
 describe('Cart Properties:', function() {
   test('Cart should default to an empty array.', function() {
-    expect( Array.isArray( cart.cart) ).toEqual( true );
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
     expect( cart.cart.length ).toEqual( 0 );
   });
   
