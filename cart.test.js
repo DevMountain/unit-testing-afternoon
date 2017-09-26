@@ -1,6 +1,9 @@
 const cart = require('./cart');
 const cars = require('./data/cars');
 
+const initializedCart = cart.cart;
+const initializedTotal = cart.total;
+
 describe('Cart Properties:', function() {
   test('Cart should default to an empty array.', function() {
     expect( Array.isArray( cart.cart ) ).toEqual( true );
@@ -16,9 +19,9 @@ describe('Cart Properties:', function() {
 
 describe('Cart Methods:', function() {
   afterEach(function() {
-    cart.cart = [];
-    cart.total = 0;
-  });  
+    cart.cart = initializedCart;
+    cart.total = initializedTotal;
+  });
 
   test('addToCart() should add a car object to the cart array.', function() {
     cart.addToCart( cars[0] );
