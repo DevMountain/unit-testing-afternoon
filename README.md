@@ -66,7 +66,7 @@ Lastly, we'll just need to update the `test` script in `package.json` to be `"je
 
 ### Summary
 
-In this step, we'll begin creating Unit Tests for `cart.js` by creating the skeleton of test file.
+In this step, we'll begin creating Unit Tests for `cart.js` by creating the skeleton of the test file.
 
 ### Instructions
 
@@ -87,7 +87,7 @@ Let's begin by creating a `cart.test.js` file at the root level of the project. 
 const cart = require('./cart');
 ```
 
-When we require `cart.js` we gain access to all its exported methods. You can view how many methods there are by opening `cart.js`. We can see that there are two methods that could fit inside a test group, the `increaseQuantity` and `decreaseQuantity` method. Using the `describe` keyword we can create a group for these two methods. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
+When we require `cart.js` we gain access to all of its exported methods. You can view how many methods there are by opening `cart.js`. We can see that there are two methods that could fit inside a test group, the `increaseQuantity` and `decreaseQuantity` method. Using the `describe` keyword we can create a group for these two methods. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
 
 ```js
 const cart = require('./cart');
