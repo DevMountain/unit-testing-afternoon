@@ -305,6 +305,8 @@ module.exports = {
 
 </details>
 
+<img src="https://github.com/DevMountain/unit-testing-afternoon/blob/solution/readme-assets/1g.gif" />
+
 
 
 
