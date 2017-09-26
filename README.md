@@ -168,6 +168,8 @@ In this step, we'll begin to add the tests into `cart.test.js` by using a list o
 
 </details>
 
+### Solution
+
 <details>
 
 <summary> <code> cart.test.js </code> </summary>
