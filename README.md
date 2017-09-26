@@ -26,6 +26,8 @@ Let's begin by initialzing a `package.json` file using `npm`. In a terminal, we 
 
 Lastly, we'll just need to update the `test` script in `package.json` to be `"jest"`. This will allow us to run `npm test` in a terminal.
 
+</details>
+
 ### Solution
 
 <details>
