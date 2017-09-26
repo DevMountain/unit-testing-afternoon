@@ -266,12 +266,12 @@ describe('Cart Methods:', function() {
 
 ### Summary
 
-In this step, you'll create the solutions to each method in `cart.js`. You can use the Unit Tests to determine when you have the correct answer. There won't be any detailed instructions for this step. Use the Unit Tests as a reference for when you have the correct answer. Take a look at the solution code only as a last resort.
+In this step, you'll create the solutions to each method and property in `cart.js`. You can use the Unit Tests to determine when you have the correct answer. There won't be any detailed instructions for this step. Use the Unit Tests as a reference for when you have the correct answer. Take a look at the solution code only as a last resort.
 
 ### Instructions
 
 * Open `cart.js`.
-* Compelete the code for each `method` to make all the Unit Tests pass.
+* Compelete the code for each `method` and `property` to make all the Unit Tests pass.
 
 ### Solution
 
