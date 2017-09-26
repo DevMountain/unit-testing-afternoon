@@ -154,6 +154,9 @@ In this step, we'll begin to add the tests into `cart.test.js` by using a list o
     * For example remove( 3 ): [ 1, 2, 3, 4, 5 ] -> [ 1, 2, 4, 5 ]
 * Create a test for the `removeFromCart` method:
   * This test should `expect` the `total` property to decrease by the car object's price on each call.
+* Create a test for the `checkout` method:
+  * This test should `expect` the `cart` length to equal `0`.
+  * This test should `expect` the `total` property to equal `0`.
 
 
 
