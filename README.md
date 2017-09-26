@@ -150,7 +150,7 @@ In this step, we'll begin to add the tests into `cart.test.js` by using a list o
   * This test should `expect` the `total` property to increase by the car object's price.
 * Create a test for the `removeFromCart` method:
   * This test should `expect` the `cart` length to decrease by 1 on each call.
-  * This test should `expect` the `cart` array to maintain the order of car objects in the cart.
+  * This test should `expect` the `cart` array to maintain the order of car objects in the `cart` array.
     * For example remove( 3 ): [ 1, 2, 3, 4, 5 ] -> [ 1, 2, 4, 5 ]
 
 
