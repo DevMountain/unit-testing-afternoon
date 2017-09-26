@@ -61,3 +61,54 @@ Lastly, we'll just need to update the `test` script in `package.json` to be `"je
 ```
 
 </details>
+
+## Step 2
+
+### Summary
+
+In this step, we'll begin creating Unit Tests for `cart.js` by creating the skeleton of test file.
+
+### Instructions
+
+* Create a `cart.test.js` file.
+* Open `cart.test.js`.
+* Require `cart.js` into the file.
+* Create a test group called `Quantity Functions:`.
+
+<details>
+
+<summary> Detailed Instructions </summary>
+
+<br />
+
+Let's begin by creating a `cart.test.js` file at the root level of the project. This is where we'll write all the tests for the `cart.js` file. We added a `.test` to the file extension so that Jest will be able to find this test file when executing. We could of also made a `__tests__` folder and stuck a JavaScript file in there. Now that we have a test file, let's require the module we want to test.
+
+```js
+const cart = require('./cart');
+```
+
+When we require `cart.js` we gain access to all its exported methods. You can view how many methods there are by opening `cart.js`. We can see that there are two methods that could fit inside a test group, the `increaseQuantity` and `decreaseQuantity` method. Using the `describe` keyword we can create a group for these two methods. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
+
+```js
+const cart = require('./cart');
+
+describe('Quantity Functions:', function() {
+  
+});
+```
+
+</details>
+
+<details>
+
+<summary> <code> cart.test.js </code> </summary>
+
+```js
+const cart = require('./cart');
+
+describe('Quantity Functions:', function() {
+  
+});
+```
+
+</details>
