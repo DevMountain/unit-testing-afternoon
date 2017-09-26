@@ -115,7 +115,7 @@ describe('Cart Methods:', function() {
 
 ```js
 const cart = require('./cart');
-const cars = requier('./data/cars.js');
+const cars = require('./data/cars.js');
 
 describe('Cart Properties:', function() {
 
