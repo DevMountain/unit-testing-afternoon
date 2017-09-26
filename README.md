@@ -123,7 +123,7 @@ describe('Quantity Functions:', function() {
 
 ### Summary
 
-In this step, we'll begin to add the tests into `cart.test.js` by using a list of specifications. This is similiar to how you would be asked to make Unit Tests on the job.
+In this step, we'll begin to add the tests into `cart.test.js` by using a list of specifications. This is similiar to how you would be asked to make Unit Tests on the job. You'll have the freedom to name the test whatever you want. Therefore, when viewing solutions pay attention to the logic of the test case rather than the name of it.
 
 ### Instructions
 
