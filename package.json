@@ -1,0 +1,23 @@
+{
+  "name": "unit-testing-afternoon",
+  "version": "1.0.0",
+  "description": "Unit Testing - Day 1 - Jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevMountain/unit-testing-afternoon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevMountain/unit-testing-afternoon/issues"
+  },
+  "homepage": "https://github.com/DevMountain/unit-testing-afternoon#readme",
+  "devDependencies": {
+    "jest": "^21.1.0"
+  }
+}

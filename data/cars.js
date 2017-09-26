@@ -1,0 +1,22 @@
+module.exports = [
+  {"id":1,"make":"Pontiac","model":"Firebird","year":1990,"price":8605},
+  {"id":2,"make":"Mercury","model":"Cougar","year":1987,"price":48539},
+  {"id":3,"make":"Chevrolet","model":"G-Series G30","year":1993,"price":20709},
+  {"id":4,"make":"Tesla","model":"Roadster","year":2011,"price":38506},
+  {"id":5,"make":"Acura","model":"RSX","year":2002,"price":16179},
+  {"id":6,"make":"Pontiac","model":"Sunfire","year":1996,"price":24227},
+  {"id":7,"make":"Buick","model":"Riviera","year":1996,"price":5241},
+  {"id":8,"make":"Isuzu","model":"Rodeo","year":1999,"price":13238},
+  {"id":9,"make":"Chrysler","model":"PT Cruiser","year":2004,"price":18480},
+  {"id":10,"make":"Volkswagen","model":"Eurovan","year":1995,"price":46179},
+  {"id":11,"make":"Mitsubishi","model":"Challenger","year":2002,"price":36344},
+  {"id":12,"make":"Buick","model":"Park Avenue","year":1992,"price":20520},
+  {"id":13,"make":"Lotus","model":"Esprit","year":2001,"price":35903},
+  {"id":14,"make":"Ford","model":"Explorer","year":2002,"price":42441},
+  {"id":15,"make":"Mazda","model":"MX-5","year":2001,"price":20696},
+  {"id":16,"make":"Lexus","model":"RX Hybrid","year":2011,"price":29781},
+  {"id":17,"make":"Hyundai","model":"Tucson","year":2011,"price":26741},
+  {"id":18,"make":"Pontiac","model":"GTO","year":1966,"price":19054},
+  {"id":19,"make":"Saab","model":"9-7X","year":2009,"price":32617},
+  {"id":20,"make":"Jeep","model":"Cherokee","year":1992,"price":28059}
+];
