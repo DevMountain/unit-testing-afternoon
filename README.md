@@ -87,14 +87,14 @@ Let's begin by creating a `cart.test.js` file at the root level of the project. 
 
 ```js
 const cart = require('./cart');
-const cars = requier('./data/cars.js');
+const cars = require('./data/cars.js');
 ```
 
-When we require `cart.js` we gain access to all of its exported methods. You can view how many methods there are by opening `cart.js`. We can group the test cases specifically for the two cart properties into a group called `Cart Properties:` and we can group the test caes specifically for the three methods into a group called `Cart Methods:`. In Jest, you can create test groups by using the `describe` keyword. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
+When we require `cart.js`, we gain access to all of its exported methods and properties. You can view how many methods and properties there are by opening `cart.js`. We can group the test cases specifically for the two cart properties into a group called `Cart Properties:` and we can group the test caes specifically for the three methods into a group called `Cart Methods:`. In Jest, you can create test groups by using the `describe` keyword. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
 
 ```js
 const cart = require('./cart');
-const cars = requier('./data/cars.js');
+const cars = require('./data/cars.js');
 
 describe('Cart Properties:', function() {
 
