@@ -276,6 +276,18 @@ test('addToCart() should add a car object to the cart array.', function() {
 });
 ```
 
+Let's move on to our second test block. We are calling `addToCart` three times with `cars[0]`, `cars[8]`, and `cars[2]`. If our total is suppose to update based on a car object's `price` property, we should then `expect` `total` to equal the sum of `cars[0].price`, `cars[8].price`, and `cars[2].price`.
+
+```js
+test('addToCart() should increase the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+  expect( cart.total ).toEqual( cars[0].price + cars[8].price + cars[2].price );
+});
+```
+
 
 
 </details>
