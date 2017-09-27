@@ -157,12 +157,16 @@ You can read more about it <a href="https://facebook.github.io/jest/docs/en/api.
 * Create a test for the `addToCart` method:
   * This test should `expect` the `cart` length to increase by 1 on each call.
   * This test should `expect` the `car` object to appear at the end of the `cart` array.
+  * This method should have a single argument: the car object that is being added.
 * Create a test for the `addToCart` method:
   * This test should `expect` the `total` property to increase by the car object's price on each call.
 * Create a test for the `removeFromCart` method:
   * This test should `expect` the `cart` length to decrease by 1 on each call.
   * This test should `expect` the `cart` array to maintain the order of car objects in the `cart` array.
     * For example remove( 3 ): [ 1, 2, 3, 4, 5 ] -> [ 1, 2, 4, 5 ]
+  * This method should have two arguments:
+    * The first argument should be the index of the car object in the cart array.
+    * The second argument should be the `price` property's value on the car object.
 * Create a test for the `removeFromCart` method:
   * This test should `expect` the `total` property to decrease by the car object's price on each call.
 * Create a test for the `checkout` method:
@@ -492,7 +496,6 @@ module.exports = {
 <br />
 
 <img src="https://github.com/DevMountain/unit-testing-afternoon/blob/solution/readme-assets/1g.gif" />
-
 
 ## Contributions
 
