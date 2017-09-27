@@ -344,7 +344,7 @@ test('removeFromCart() should decrease the total property.', function() {
 });
 ```
 
-Let's move on to our method: `checkout`. This method should be pretty easy to test. All we need to do here is add a random number of cars to our cart and then call the `checkout` method. We can then `expect` `cart` equals an empty array and we can then `expect` `total` equals `0`.
+Let's move on to our last method: `checkout`. This method should be pretty easy to test. All we need to do here is add a random number of cars to our cart and then call the `checkout` method. We can then `expect` `cart` equals an empty array and we can then `expect` `total` equals `0`.
 
 ```js
 test('checkout() shoud empty the cart array and set total to 0.', function() {
