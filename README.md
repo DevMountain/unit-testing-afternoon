@@ -244,7 +244,37 @@ afterEach(function() {
 });
 ```
 
-Let's move on to our first method: `addToCart`. To test this method we'll want to make sure that when we add a car to the cart, it is being pushed to the end of the cart array. We'll also want to test that the length is increased only by one each time. So how do we test what a method does when executed in Jest? Well according to the specifications, when the `addToCart` method is called, the `cart` and `total` properties should update. Therefore, we can actually call the `addToCart` method and then create `expect` statements for `cart` and `total`.
+Let's move on to our first method: `addToCart`. To test this method, we'll want to make sure that when we add a car to the cart, it is being pushed to the end of the cart array. We'll also want to test that the length is increased only by one each time. So how do we test what a method does when executed in Jest? Well according to the specifications, when the `addToCart` method is called, the `cart` and `total` properties should update. Therefore, we can actually call the `addToCart` method and then create `expect` statements for `cart` and `total`. To follow the convention of Unit Testing, each test should be as small as possible, so let's separate the tests for `cart` and `total` into two different test blocks.
+
+```js
+  test('addToCart() should add a car object to the cart array.', function() {
+    cart.addToCart( cars[0] );
+    cart.addToCart( cars[1] );
+
+  });
+
+  test('addToCart() should increase the total property.', function() {
+    cart.addToCart( cars[0] );
+    cart.addToCart( cars[8] );
+    cart.addToCart( cars[2] );
+
+  });
+```
+
+You may wonder if the number of times I called `addToCart` matters or if the specific `cars[ # ]` matters. It only matters to an extent. In order to test that car objects are being `pushed` into the end of the array, we need at least two car objects to test that `cars[1]` will come after `cars[0]`. However, if you wanted to, you could add more. In order to test that the price is being updated based on `car.price` you could test that with at least two car objects. As for the `cars[ # ]` you can use any valid car object in `data/cars.js`. So try not to get caught up in asking why I called a method `x` times or why did I use `cars[ # ]`. The take away here is the logic of the `expect` statements.
+
+Getting back on topic, let's add some `expect` statements for our first test block. So we want to test car objects are being `pushed` to the end of the array and we want to test that the length is only increasing by one. Knowing this we can `expect` that `cart.cart[0]` equals `cars[0]`, we can `expect` that `cart.cart[1]` equals `cars[1]`, and we can `expect` that `cart.length` equals `2`.
+
+```js
+test('addToCart() should add a car object to the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+
+  expect( cart.cart.length ).toEqual( 2 );
+  expect( cart.cart[0] ).toEqual( cars[0] );
+  expect( cart.cart[1] ).toEqual( cars[1] );
+});
+```
 
 
 
