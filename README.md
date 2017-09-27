@@ -311,7 +311,9 @@ test('removeFromCart() should decrease the total property.', function() {
 });
 ```
 
-In our first test block, we are calling `addToCart` three times with `cars[0]`, `cars[1]`, and `cars[2]`. We then remove `cars[1]`, or in other words the middle of the Array. This means we should `expect` `cart.cart[0]` equals `cars[0]`, we should `expect` `cart.cart[1]` equals `cars[2]`, and we should `expect` `cart.length` equals `2`.
+Let's take a second to break down what's happening in the arguments of `removeFromCart`. The first argument is the index of the car as it appears in the cart. This allows us to quickly `splice` it out of the `cart` array. The second argument is the car object's `price` property. This allows us to quickly decrease the total by the price. This will lead to a very simple method when it comes time to code it.
+
+In our first test block, we are calling `addToCart` three times with `cars[0]`, `cars[1]`, and `cars[2]`. We then remove `cars[1]` or in other words the middle of the Array. This means we should `expect` `cart.cart[0]` equals `cars[0]`, we should `expect` `cart.cart[1]` equals `cars[2]`, and we should `expect` `cart.length` equals `2`.
 
 ```js
 test('removeFromCart() should remove a car object from the cart array.', function() {
@@ -327,6 +329,20 @@ test('removeFromCart() should remove a car object from the cart array.', functio
 });
 ```
 
+Now let's test that the `price` is being decreased correctly. In our second test block, we are calling `addToCart` three times with `cars[0]`, `cars[8]`, and `cars[2]`. We then remove `cars[0]` and `cars[2]`. This means that there is only one car in the `cart` array. This means we should `expect` `total` equals `cars[8].price`.
+
+```js
+test('removeFromCart() should decrease the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 0, cars[0].price );
+  cart.removeFromCart( 1, cars[2].price );
+
+  expect( cart.total ).toEqual( cars[8].price );
+});
+```
 
 
 </details>
