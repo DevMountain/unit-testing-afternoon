@@ -175,6 +175,49 @@ You can read more about it <a href="https://facebook.github.io/jest/docs/en/api.
 
 <br />
 
+Let's begin by opening `cart.test.js` and taking a look at the `Cart Properties:` test group. For our `cart` to function correctly, we'll need the `cart` property to be an Array. To begin writing a test in Jest, we use the keyword `test`. `test` takes two arguments. The first argument is the name of the test and the second argument is a callback function that gets called to execute the test. The value you provide in the first argument is what you'll see in the terminal when running `npm test`. 
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+
+  });
+});
+```
+
+Inside the callback function we can use the keyword `expect` to define a test case. In this example, we can combine expect with the `isArray` Array prototype. `isArray` will return true or false depending on if the argument is an Array or not.
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    // Will equal true or false
+    expect( Array.isArray( cart.cart ) )
+  });
+});
+```
+
+We can then chain on a `.toEqual` to our `expect` and provide the value we are expecting. 
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    // Will equal true or false
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
+  });
+});
+```
+
+To complete this test, we'll also want to make sure the cart defaults to being empty. We can do this with another `expect` statement in combination with the `length` Array prototype. We'll want to `expect` it to equal `0`.
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
+    expect( cart.cart.length ).toEqual( 0 );
+  });
+});
+```
+
 
 
 </details>
