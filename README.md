@@ -218,6 +218,25 @@ describe('Cart Properties:', function() {
 });
 ```
 
+Let's move on to the `total` property. For our cart to work correctly, total will need to be of type `number` and default to `0`. We can test both of these using one `expect` statement. When using `.toEqual` it will test for value and type. This means that `.toEqual( 0 )` and `.toEqual( '0' )` are not the same.
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
+    expect( cart.cart.length ).toEqual( 0 );
+  });
+  
+  test('Total should default to 0.', function() {
+    expect( cart.total ).toEqual( 0 );
+  });
+});
+```
+
+That's all we need to test the properties of `cart.js`. Let's move on to the `Cart Methods:` test group. This test group is the larger of the two, therefore in the code snippets to follow I'll only show the code for the `test` block. These test blocks should go inside the test group. You can double check your work by looking at the solution code.
+
+
+
 
 
 </details>
@@ -240,7 +259,6 @@ describe('Cart Properties:', function() {
   
   test('Total should default to 0.', function() {
     expect( cart.total ).toEqual( 0 );
-    expect( typeof( cart.total ) ).toEqual( 'number' );
   });
 });
 
@@ -249,7 +267,7 @@ describe('Cart Methods:', function() {
   afterEach(function() {
     cart.cart = [];
     cart.total = 0;
-  });  
+  });
 
   test('addToCart() should add a car object to the cart array.', function() {
     cart.addToCart( cars[0] );

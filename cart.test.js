@@ -9,7 +9,6 @@ describe('Cart Properties:', function() {
   
   test('Total should default to 0.', function() {
     expect( cart.total ).toEqual( 0 );
-    expect( typeof( cart.total ) ).toEqual( 'number' );
   });
 });
 
