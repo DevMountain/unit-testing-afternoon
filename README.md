@@ -329,7 +329,7 @@ test('removeFromCart() should remove a car object from the cart array.', functio
 });
 ```
 
-Now let's test that the `price` is being decreased correctly. In our second test block, we are calling `addToCart` three times with `cars[0]`, `cars[8]`, and `cars[2]`. We then remove `cars[0]` and `cars[2]`. This means that there is only one car in the `cart` array. This means we should `expect` `total` equals `cars[8].price`.
+Now let's test that the `total` is being decreased correctly. In our second test block, we are calling `addToCart` three times with `cars[0]`, `cars[8]`, and `cars[2]`. We then remove `cars[0]` and `cars[2]`. This means that there is only one car in the `cart` array. This means we should `expect` `total` equals `cars[8].price`.
 
 ```js
 test('removeFromCart() should decrease the total property.', function() {
@@ -344,6 +344,21 @@ test('removeFromCart() should decrease the total property.', function() {
 });
 ```
 
+Let's move on to our method: `checkout`. This method should be pretty easy to test. All we need to do here is add a random number of cars to our cart and then call the `checkout` method. We can then `expect` `cart` equals an empty array and we can then `expect` `total` equals `0`.
+
+```js
+test('checkout() shoud empty the cart array and set total to 0.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+  cart.addToCart( cars[2] );
+  cart.addToCart( cars[3] );
+
+  cart.checkout();
+
+  expect( cart.cart.length ).toEqual( 0 );
+  expect( cart.total ).toEqual( 0 );
+});
+```
 
 </details>
 
