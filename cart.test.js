@@ -21,9 +21,11 @@ describe('Cart Methods:', function() {
 
   test('addToCart() should add a car object to the cart array.', function() {
     cart.addToCart( cars[0] );
-  
-    expect( cart.cart.length ).toEqual( 1 );
+    cart.addToCart( cars[1] );
+
+    expect( cart.cart.length ).toEqual( 2 );
     expect( cart.cart[0] ).toEqual( cars[0] );
+    expect( cart.cart[1] ).toEqual( cars[1] );
   });
 
   test('addToCart() should increase the total property.', function() {

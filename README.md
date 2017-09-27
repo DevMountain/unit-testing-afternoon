@@ -235,7 +235,16 @@ describe('Cart Properties:', function() {
 
 That's all we need to test the properties of `cart.js`. Let's move on to the `Cart Methods:` test group. This test group is the larger of the two, therefore in the code snippets to follow I'll only show the code for the `test` block. These test blocks should go inside the test group. You can double check your work by looking at the solution code.
 
+Let's begin by adding an `afterEach` at the top of the test group. We need an `afterEach` to reset the value of the `cart` and `total` properties. If we didn't reset these values it could cause unexpected results in our test cases. I'll go into more detail on this later on. Using the explanation in this step's summary, we should end up with:
 
+```js
+afterEach(function() {
+  cart.cart = [];
+  cart.total = 0;
+});
+```
+
+Let's move on to our first method: `addToCart`. To test this method we'll want to make sure that when we add a car to the cart, it is being pushed to the end of the cart array. We'll also want to test that the length is increased only by one each time. So how do we test what a method does when executed in Jest? Well according to the specifications, when the `addToCart` method is called, the `cart` and `total` properties should update. Therefore, we can actually call the `addToCart` method and then create `expect` statements for `cart` and `total`.
 
 
 
@@ -271,9 +280,11 @@ describe('Cart Methods:', function() {
 
   test('addToCart() should add a car object to the cart array.', function() {
     cart.addToCart( cars[0] );
-  
-    expect( cart.cart.length ).toEqual( 1 );
+    cart.addToCart( cars[1] );
+
+    expect( cart.cart.length ).toEqual( 2 );
     expect( cart.cart[0] ).toEqual( cars[0] );
+    expect( cart.cart[1] ).toEqual( cars[1] );
   });
 
   test('addToCart() should increase the total property.', function() {
