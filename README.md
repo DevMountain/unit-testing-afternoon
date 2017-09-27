@@ -175,7 +175,190 @@ You can read more about it <a href="https://facebook.github.io/jest/docs/en/api.
 
 <br />
 
+Let's begin by opening `cart.test.js` and taking a look at the `Cart Properties:` test group. For our `cart` to function correctly, we'll need the `cart` property to be an Array. To begin writing a test in Jest, we use the keyword `test`. `test` takes two arguments. The first argument is the name of the test and the second argument is a callback function that gets called to execute the test. The value you provide in the first argument is what you'll see in the terminal when running `npm test`. 
 
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+
+  });
+});
+```
+
+Inside the callback function we can use the keyword `expect` to define a test case. In this example, we can combine expect with the `isArray` Array prototype. `isArray` will return true or false depending on if the argument is an Array or not.
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    // Will equal true or false
+    expect( Array.isArray( cart.cart ) )
+  });
+});
+```
+
+We can then chain on a `.toEqual` to our `expect` and provide the value we are expecting. 
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    // Will equal true or false
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
+  });
+});
+```
+
+To complete this test, we'll also want to make sure the cart defaults to being empty. We can do this with another `expect` statement in combination with the `length` Array prototype. We'll want to `expect` it to equal `0`.
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
+    expect( cart.cart.length ).toEqual( 0 );
+  });
+});
+```
+
+Let's move on to the `total` property. For our cart to work correctly, total will need to be of type `number` and default to `0`. We can test both of these using one `expect` statement. When using `.toEqual` it will test for value and type. This means that `.toEqual( 0 )` and `.toEqual( '0' )` are not the same.
+
+```js
+describe('Cart Properties:', function() {
+  test('Cart should default to an empty array.', function() {
+    expect( Array.isArray( cart.cart ) ).toEqual( true );
+    expect( cart.cart.length ).toEqual( 0 );
+  });
+  
+  test('Total should default to 0.', function() {
+    expect( cart.total ).toEqual( 0 );
+  });
+});
+```
+
+That's all we need to test the properties of `cart.js`. Let's move on to the `Cart Methods:` test group. This test group is the larger of the two, therefore in the code snippets to follow I'll only show the code for the `test` block. These test blocks should go inside the test group. You can double check your work by looking at the solution code.
+
+Let's begin by adding an `afterEach` at the top of the test group. We need an `afterEach` to reset the value of the `cart` and `total` properties. If we didn't reset these values it could cause unexpected results in our test cases. I'll go into more detail on this later on. Using the explanation in this step's summary, we should end up with:
+
+```js
+afterEach(function() {
+  cart.cart = [];
+  cart.total = 0;
+});
+```
+
+Let's move on to our first method: `addToCart`. To test this method, we'll want to make sure that when we add a car to the cart, it is being pushed to the end of the cart array. We'll also want to test that the length is increased only by one each time. So how do we test what a method does when executed in Jest? Well according to the specifications, when the `addToCart` method is called, the `cart` and `total` properties should update. Therefore, we can actually call the `addToCart` method and then create `expect` statements for `cart` and `total`. To follow the convention of Unit Testing, each test should be as small as possible, so let's separate the tests for `cart` and `total` into two different test blocks.
+
+```js
+test('addToCart() should add a car object to the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+
+});
+
+test('addToCart() should increase the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+});
+```
+
+You may wonder if the number of times I called `addToCart` matters or if the specific `cars[ # ]` matters. It only matters to an extent. In order to test that car objects are being `pushed` into the end of the array, we need at least two car objects to test that `cars[1]` will come after `cars[0]`. However, if you wanted to, you could add more. In order to test that the price is being updated based on `car.price` you could test that with at least two car objects. As for the `cars[ # ]` you can use any valid car object in `data/cars.js`. So try not to get caught up in asking why I called a method `x` times or why did I use `cars[ # ]`. The take away here is the logic of the `expect` statements.
+
+Getting back on topic, let's add some `expect` statements for our first test block. So we want to test car objects are being `pushed` to the end of the array and we want to test that the length is only increasing by one. Knowing this we can `expect` that `cart.cart[0]` equals `cars[0]`, we can `expect` that `cart.cart[1]` equals `cars[1]`, and we can `expect` that `cart.length` equals `2`.
+
+```js
+test('addToCart() should add a car object to the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+
+  expect( cart.cart.length ).toEqual( 2 );
+  expect( cart.cart[0] ).toEqual( cars[0] );
+  expect( cart.cart[1] ).toEqual( cars[1] );
+});
+```
+
+Let's move on to our second test block. We are calling `addToCart` three times with `cars[0]`, `cars[8]`, and `cars[2]`. If our total is suppose to update based on a car object's `price` property, we should then `expect` `total` to equal the sum of `cars[0].price`, `cars[8].price`, and `cars[2].price`.
+
+```js
+test('addToCart() should increase the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+  expect( cart.total ).toEqual( cars[0].price + cars[8].price + cars[2].price );
+});
+```
+
+Let's move on to our next method: `removeFromCart`. This is essentially the inverse of `addToCart`. We'll still need two tests, we'll still need to test the order of the `cart` array, and we'll still need to test the `total` property being updated. 
+
+```js
+test('removeFromCart() should remove a car object from the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 1, cars[1].price );
+
+});
+
+test('removeFromCart() should decrease the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 0, cars[0].price );
+  cart.removeFromCart( 1, cars[2].price );
+
+});
+```
+
+Let's take a second to break down what's happening in the arguments of `removeFromCart`. The first argument is the index of the car as it appears in the cart. This allows us to quickly `splice` it out of the `cart` array. The second argument is the car object's `price` property. This allows us to quickly decrease the total by the price. This will lead to a very simple method when it comes time to code it.
+
+In our first test block, we are calling `addToCart` three times with `cars[0]`, `cars[1]`, and `cars[2]`. We then remove `cars[1]` or in other words the middle of the Array. This means we should `expect` `cart.cart[0]` equals `cars[0]`, we should `expect` `cart.cart[1]` equals `cars[2]`, and we should `expect` `cart.length` equals `2`.
+
+```js
+test('removeFromCart() should remove a car object from the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 1, cars[1].price );
+
+  expect( cart.cart.length ).toEqual( 2 );
+  expect( cart.cart[0] ).toEqual( cars[0] );
+  expect( cart.cart[1] ).toEqual( cars[2] );
+});
+```
+
+Now let's test that the `total` is being decreased correctly. In our second test block, we are calling `addToCart` three times with `cars[0]`, `cars[8]`, and `cars[2]`. We then remove `cars[0]` and `cars[2]`. This means that there is only one car in the `cart` array. This means we should `expect` `total` equals `cars[8].price`.
+
+```js
+test('removeFromCart() should decrease the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 0, cars[0].price );
+  cart.removeFromCart( 1, cars[2].price );
+
+  expect( cart.total ).toEqual( cars[8].price );
+});
+```
+
+Let's move on to our last method: `checkout`. This method should be pretty easy to test. All we need to do here is add a random number of cars to our cart and then call the `checkout` method. We can then `expect` `cart` equals an empty array and we can then `expect` `total` equals `0`.
+
+```js
+test('checkout() shoud empty the cart array and set total to 0.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+  cart.addToCart( cars[2] );
+  cart.addToCart( cars[3] );
+
+  cart.checkout();
+
+  expect( cart.cart.length ).toEqual( 0 );
+  expect( cart.total ).toEqual( 0 );
+});
+```
 
 </details>
 
@@ -197,7 +380,6 @@ describe('Cart Properties:', function() {
   
   test('Total should default to 0.', function() {
     expect( cart.total ).toEqual( 0 );
-    expect( typeof( cart.total ) ).toEqual( 'number' );
   });
 });
 
@@ -206,13 +388,15 @@ describe('Cart Methods:', function() {
   afterEach(function() {
     cart.cart = [];
     cart.total = 0;
-  });  
+  });
 
   test('addToCart() should add a car object to the cart array.', function() {
     cart.addToCart( cars[0] );
-  
-    expect( cart.cart.length ).toEqual( 1 );
+    cart.addToCart( cars[1] );
+
+    expect( cart.cart.length ).toEqual( 2 );
     expect( cart.cart[0] ).toEqual( cars[0] );
+    expect( cart.cart[1] ).toEqual( cars[1] );
   });
 
   test('addToCart() should increase the total property.', function() {
@@ -228,7 +412,7 @@ describe('Cart Methods:', function() {
     cart.addToCart( cars[1] );
     cart.addToCart( cars[2] );
   
-    cart.removeFromCart( 1, cars[1] );
+    cart.removeFromCart( 1, cars[1].price );
   
     expect( cart.cart.length ).toEqual( 2 );
     expect( cart.cart[0] ).toEqual( cars[0] );
@@ -240,8 +424,8 @@ describe('Cart Methods:', function() {
     cart.addToCart( cars[8] );
     cart.addToCart( cars[2] );
 
-    cart.removeFromCart( 0, cars[0] );
-    cart.removeFromCart( 1, cars[2] );
+    cart.removeFromCart( 0, cars[0].price );
+    cart.removeFromCart( 1, cars[2].price );
 
     expect( cart.total ).toEqual( cars[8].price );
   });
@@ -305,15 +489,9 @@ module.exports = {
 
 </details>
 
+<br />
 
-
-
-
-
-
-
-
-
+<img src="https://github.com/DevMountain/unit-testing-afternoon/blob/solution/readme-assets/1g.gif" />
 
 
 ## Contributions
