@@ -288,6 +288,45 @@ test('addToCart() should increase the total property.', function() {
 });
 ```
 
+Let's move on to our next method: `removeFromCart`. This is essentially the inverse of `addToCart`. We'll still need two tests, we'll still need to test the order of the `cart` array, and we'll still need to test the `total` property being updated. 
+
+```js
+test('removeFromCart() should remove a car object from the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 1, cars[1].price );
+
+});
+
+test('removeFromCart() should decrease the total property.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[8] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 0, cars[0].price );
+  cart.removeFromCart( 1, cars[2].price );
+
+});
+```
+
+In our first test block, we are calling `addToCart` three times with `cars[0]`, `cars[1]`, and `cars[2]`. We then remove `cars[1]`, or in other words the middle of the Array. This means we should `expect` `cart.cart[0]` equals `cars[0]`, we should `expect` `cart.cart[1]` equals `cars[2]`, and we should `expect` `cart.length` equals `2`.
+
+```js
+test('removeFromCart() should remove a car object from the cart array.', function() {
+  cart.addToCart( cars[0] );
+  cart.addToCart( cars[1] );
+  cart.addToCart( cars[2] );
+
+  cart.removeFromCart( 1, cars[1].price );
+
+  expect( cart.cart.length ).toEqual( 2 );
+  expect( cart.cart[0] ).toEqual( cars[0] );
+  expect( cart.cart[1] ).toEqual( cars[2] );
+});
+```
+
 
 
 </details>
@@ -342,7 +381,7 @@ describe('Cart Methods:', function() {
     cart.addToCart( cars[1] );
     cart.addToCart( cars[2] );
   
-    cart.removeFromCart( 1, cars[1] );
+    cart.removeFromCart( 1, cars[1].price );
   
     expect( cart.cart.length ).toEqual( 2 );
     expect( cart.cart[0] ).toEqual( cars[0] );
@@ -354,8 +393,8 @@ describe('Cart Methods:', function() {
     cart.addToCart( cars[8] );
     cart.addToCart( cars[2] );
 
-    cart.removeFromCart( 0, cars[0] );
-    cart.removeFromCart( 1, cars[2] );
+    cart.removeFromCart( 0, cars[0].price );
+    cart.removeFromCart( 1, cars[2].price );
 
     expect( cart.total ).toEqual( cars[8].price );
   });
