@@ -479,9 +479,9 @@ module.exports = {
     this.total += car.price;
   },
 
-  removeFromCart: function( index, car ) {
+  removeFromCart: function( index, price ) {
     this.cart.splice( index, 1 );
-    this.total -= car.price;
+    this.total -= price;
   },
 
   checkout: function() {
