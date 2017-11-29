@@ -450,6 +450,330 @@ describe('Cart Methods:', function() {
 
 </details>
 
+## Step 4
+
+### Summary
+
+In this step, we'll update our application to allow a previous cart and total to be restored, if the user's charge has failed.  This will involve changes to the `cart.test.js` and `cart.test.js` files.
+
+### Instructions
+
+* Still allowing for Test Driven Development, we need to add a new test.
+...* For your information, the name of the function to restore the state will be `failedCharge`, and we'll have two more variables, `oldCart` which will be an array, and `oldTotal`, which will be an integer.
+* the "old" variables will have the original's values at checkout, and revert when `failedCharge` is called.
+
+<details>
+
+<summary> Detailed Instructions</summary>
+
+<br />
+
+We need to test that after the checkout happens, `oldCart` is set to the original value of `cart` before `cart` is reset to empty, and that `oldTotal` is set to the original value of `total` before it is set to zero.
+
+```js
+    test('checkout() should copy the cart array and total to the oldCart and oldTotal.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[1]);
+        cart.addToCart(cars[2]);
+        cart.addToCart(cars[3]);
+
+        cart.checkout();
+
+        expect(cart.oldCart.length).toEqual(4);
+        expect(cart.oldCart[0]).toEqual(cars[0]);
+        expect(cart.oldTotal).toEqual(cars[0].price + cars[1].price + cars[2].price + cars[3].price);
+    });
+```
+
+Then, when `failedCharge` is called, it will transfer the values of `oldCart` and `oldTotal` to `cart` and `total`, and empty and zero out `oldCart` and `oldTotal`.
+
+```js
+    test('failedCharge() will set cart and total equal to oldCart and oldTotal.', function () {
+        cart.oldCart.push(cars[0]);
+        cart.oldCart.push(cars[1]);
+        cart.oldCart.push(cars[2]);
+        cart.oldCart.push(cars[3]);
+        cart.oldTotal = cars[0].price + cars[1].price + cars[2].price + cars[3].price;
+
+        cart.failedCharge();
+
+        expect(cart.cart.length).toEqual(4);
+        expect(cart.cart[0]).toEqual(cars[0]);
+        expect(cart.total).toEqual(cars[0].price + cars[1].price + cars[2].price + cars[3].price);
+    });
+
+    test('failedCharge() will empty the oldCart and oldTotal.', () => {
+        cart.oldCart.push(cars[0]);
+        cart.oldCart.push(cars[1]);
+        cart.oldCart.push(cars[2]);
+        cart.oldCart.push(cars[3]);
+        cart.oldTotal = cars[0].price + cars[1].price + cars[2].price + cars[3].price;
+
+        cart.failedCharge();
+
+        expect(cart.oldCart.length).toEqual(0);
+        expect(cart.oldTotal).toEqual(0);
+    });
+```
+
+Don't forget to update your `Cart Properties:` tests, as well as the `AfterEach` procedures to accommodate the new functionality.
+All of these changes will occurr in `cart.test.js`.
+
+```js
+    test('oldCart should default to an empty array.', function () {
+        expect(Array.isArray(cart.oldCart)).toEqual(true);
+        expect(cart.oldCart).toEqual([]);
+        expect(cart.oldCart.length).toEqual(0);
+    });
+
+    test('oldTotal should default to 0.', function () {
+        expect(cart.oldTotal).toEqual(0);
+    });
+```
+
+```js
+  describe('Cart Methods:', function () {
+    afterEach(function () {
+        cart.cart = [];
+        cart.total = 0;
+        cart.oldCart = [];
+        cart.total = 0;
+    });
+```
+
+</details>
+
+### Solution
+
+<details>
+
+<summary> <code> cart.test.js </code> </summary>
+
+```js
+const cart = require('./cart');
+const cars = require('./data/cars');
+
+describe('Cart Properties:', function () {
+    test('Cart should default to an empty array.', function () {
+        expect(Array.isArray(cart.cart)).toEqual(true);
+        expect(cart.cart).toEqual([]);
+        expect(cart.cart.length).toEqual(0);
+    });
+
+    test('Total should default to 0.', function () {
+        expect(cart.total).toEqual(0);
+    });
+    
+    test('oldCart should default to an empty array.', function () {
+        expect(Array.isArray(cart.oldCart)).toEqual(true);
+        expect(cart.oldCart).toEqual([]);
+        expect(cart.oldCart.length).toEqual(0);
+    });
+
+    test('oldTotal should default to 0.', function () {
+        expect(cart.oldTotal).toEqual(0);
+    });
+});
+
+
+describe('Cart Methods:', function () {
+    afterEach(function () {
+        cart.cart = [];
+        cart.total = 0;
+        cart.oldCart = [];
+        cart.total = 0;
+    });
+
+    test('addToCart() should add a car object to the cart array.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[1]);
+
+        expect(cart.cart.length).toEqual(2);
+        expect(cart.cart[0]).toEqual(cars[0]);
+        expect(cart.cart[1]).toEqual(cars[1]);
+    });
+
+    test('addToCart() should increase the total property.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[8]);
+        cart.addToCart(cars[2]);
+
+        expect(cart.total).toEqual(cars[0].price + cars[8].price + cars[2].price);
+    });
+
+    test('removeFromCart() should remove a car object from the cart array.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[1]);
+        cart.addToCart(cars[2]);
+
+        cart.removeFromCart(1, cars[1].price);
+
+        expect(cart.cart.length).toEqual(2);
+        expect(cart.cart[0]).toEqual(cars[0]);
+        expect(cart.cart[1]).toEqual(cars[2]);
+    });
+
+    test('removeFromCart() should decrease the total property.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[8]);
+        cart.addToCart(cars[2]);
+
+        cart.removeFromCart(0, cars[0].price);
+        cart.removeFromCart(1, cars[2].price);
+
+        expect(cart.total).toEqual(cars[8].price);
+    });
+
+    test('checkout() should empty the cart array and set total to 0.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[1]);
+        cart.addToCart(cars[2]);
+        cart.addToCart(cars[3]);
+
+        cart.checkout();
+
+        expect(cart.cart.length).toEqual(0);
+        expect(cart.total).toEqual(0);
+    });
+
+    test('checkout() should copy the cart array and total to the oldCart and oldTotal.', function () {
+        cart.addToCart(cars[0]);
+        cart.addToCart(cars[1]);
+        cart.addToCart(cars[2]);
+        cart.addToCart(cars[3]);
+
+        cart.checkout();
+
+        expect(cart.oldCart.length).toEqual(4);
+        expect(cart.oldCart[0]).toEqual(cars[0]);
+        expect(cart.oldTotal).toEqual(cars[0].price + cars[1].price + cars[2].price + cars[3].price);
+    });
+
+    test('failedCharge() will set cart and total equal to oldCart and oldTotal.', function () {
+        cart.oldCart.push(cars[0]);
+        cart.oldCart.push(cars[1]);
+        cart.oldCart.push(cars[2]);
+        cart.oldCart.push(cars[3]);
+        cart.oldTotal = cars[0].price + cars[1].price + cars[2].price + cars[3].price;
+
+        cart.failedCharge();
+
+        expect(cart.cart.length).toEqual(4);
+        expect(cart.cart[0]).toEqual(cars[0]);
+        expect(cart.total).toEqual(cars[0].price + cars[1].price + cars[2].price + cars[3].price);
+    });
+
+    test('failedCharge() will empty the oldCart and oldTotal.', () => {
+        cart.oldCart.push(cars[0]);
+        cart.oldCart.push(cars[1]);
+        cart.oldCart.push(cars[2]);
+        cart.oldCart.push(cars[3]);
+        cart.oldTotal = cars[0].price + cars[1].price + cars[2].price + cars[3].price;
+
+        cart.failedCharge();
+
+        expect(cart.oldCart.length).toEqual(0);
+        expect(cart.oldTotal).toEqual(0);
+    });
+
+});
+
+```
+
+</details>
+
+## Step 5
+
+### Summary
+
+In this step we'll update `cart.js` with the new functionality.
+
+### Instructions
+
+* Add the new variables and function to `cart.js`
+
+<details>
+
+<summary> Detailed Instructions </summary>
+
+<br />
+
+First open `cart.js` and add in the `oldCart` and `oldTotal` variables right after the `cart` and `total` variables.  Make sure to default them to match respectively.
+
+```js
+  cart: [],
+  total: 0,
+  oldCart: [],
+  oldTotal: 0,
+```
+
+Now we need to update the `checkout()` function to copy `cart` and `total` to `oldCart` and `oldTotal` before resetting the originals.
+
+```js
+  checkout: function() {
+    this.oldCart = this.cart;
+    this.oldTotal = this.total;
+    this.cart = [];
+    this.total = 0;
+  }
+```
+
+Lastly, create the `failedCharge()` function to copy `oldCart` and `oldTotal` back to `cart` and `total` before resetting them back to default.
+
+```js
+  failedCharge: function() {
+    this.cart = this.oldCart;
+    this.total = this.oldTotal;
+    this.oldCart = [];
+    this.oldTotal = 0;
+  }
+```
+
+</details>
+
+### Solution
+
+<details>
+
+<summary> <code> cart.js </code> </summary>
+
+```js
+const cars = require('./data/cars');
+
+module.exports = {
+  cart: [],
+  total: 0,
+  oldCart: [],
+  oldTotal: 0,
+
+  addToCart: function( car ) {
+    this.cart.push( car );
+    this.total += car.price;
+  },
+
+  removeFromCart: function( index, price ) {
+    this.cart.splice( index, 1 );
+    this.total -= price;
+  },
+
+  checkout: function() {
+    this.oldCart = this.cart;
+    this.oldTotal = this.total;
+    this.cart = [];
+    this.total = 0;
+  },
+
+  failedCharge: function() {
+    this.cart = this.oldCart;
+    this.total = this.oldTotal;
+    this.oldCart = [];
+    this.oldTotal = 0;
+  }
+};
+```
+
+</details>
+
 
 ## Contributions
 
