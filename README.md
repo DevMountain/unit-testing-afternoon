@@ -459,7 +459,7 @@ In this step, we'll update our application to allow a previous cart and total to
 ### Instructions
 
 * Still allowing for Test Driven Development, we need to add a new test.
-...* For your information, the name of the function to restore the state will be `failedCharge`, and we'll have two more variables, `oldCart` which will be an array, and `oldTotal`, which will be an integer.
+* For your information, the name of the function to restore the state will be `failedCharge`, and we'll have two more variables, `oldCart` which will be an array, and `oldTotal`, which will be an integer.
 * the "old" variables will have the original's values at checkout, and revert when `failedCharge` is called.
 
 <details>
