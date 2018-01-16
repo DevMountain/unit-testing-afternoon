@@ -300,7 +300,7 @@ test('removeFromCart() should remove a car object from the cart array.', functio
   cart.addToCart( cars[1] );
   cart.addToCart( cars[2] );
 
-  cart.removeFromCart( 1, cars[1] );
+  cart.removeFromCart( 1, cars[1].price );
 
 });
 
