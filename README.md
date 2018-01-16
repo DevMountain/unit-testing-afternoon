@@ -2,7 +2,7 @@
 
 # Project Summary
 
-In this project, we'll learn about TTD ( test driven development ). Using Jest, we'll create Unit Tests for methods and properties inside of `cart.js`. After the Unit Tests are created, we'll create the solution for `cart.js` to make all the Unit Tests pass. The TTD approach can lead to more confidence that the code you create meets all technical requirements.
+In this project, we'll learn about TDD ( test driven development ). Using Jest, we'll create Unit Tests for methods and properties inside of `cart.js`. After the Unit Tests are created, we'll create the solution for `cart.js` to make all the Unit Tests pass. The TDD approach can lead to more confidence that the code you create meets all technical requirements.
 
 ## Step 1
 
@@ -12,7 +12,7 @@ In this step, we'll create a `package.json` and install `jest` so that we can cr
 
 ### Instructions
 
-* Initialze a `package.json` file.
+* Initialize a `package.json` file.
 * Install and save `jest` to development dependencies.
 * Modify the `test` script inside of `package.json` to be `"jest"`.
 
@@ -90,7 +90,7 @@ const cart = require('./cart');
 const cars = require('./data/cars.js');
 ```
 
-When we require `cart.js`, we gain access to all of its exported methods and properties. You can view how many methods and properties there are by opening `cart.js`. We can group the test cases specifically for the two cart properties into a group called `Cart Properties:` and we can group the test caes specifically for the three methods into a group called `Cart Methods:`. In Jest, you can create test groups by using the `describe` keyword. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
+When we require `cart.js`, we gain access to all of its exported methods and properties. You can view how many methods and properties there are by opening `cart.js`. We can group the test cases specifically for the two cart properties into a group called `Cart Properties:` and we can group the test cases specifically for the three methods into a group called `Cart Methods:`. In Jest, you can create test groups by using the `describe` keyword. The first `argument` for `describe` is the name of the group and the second `argument` is a callback function that holds all the test cases.
 
 ```js
 const cart = require('./cart');
@@ -300,7 +300,7 @@ test('removeFromCart() should remove a car object from the cart array.', functio
   cart.addToCart( cars[1] );
   cart.addToCart( cars[2] );
 
-  cart.removeFromCart( 1, cars[1].price );
+  cart.removeFromCart( 1, cars[1] );
 
 });
 
@@ -351,7 +351,7 @@ test('removeFromCart() should decrease the total property.', function() {
 Let's move on to our last method: `checkout`. This method should be pretty easy to test. All we need to do here is add a random number of cars to our cart and then call the `checkout` method. We can then `expect` `cart` equals an empty array and we can then `expect` `total` equals `0`.
 
 ```js
-test('checkout() shoud empty the cart array and set total to 0.', function() {
+test('checkout() should empty the cart array and set total to 0.', function() {
   cart.addToCart( cars[0] );
   cart.addToCart( cars[1] );
   cart.addToCart( cars[2] );
@@ -434,7 +434,7 @@ describe('Cart Methods:', function() {
     expect( cart.total ).toEqual( cars[8].price );
   });
 
-  test('checkout() shoud empty the cart array and set total to 0.', function() {
+  test('checkout() should empty the cart array and set total to 0.', function() {
     cart.addToCart( cars[0] );
     cart.addToCart( cars[1] );
     cart.addToCart( cars[2] );
@@ -459,7 +459,7 @@ In this step, you'll create the solutions to each method and property in `cart.j
 ### Instructions
 
 * Open `cart.js`.
-* Compelete the code for each `method` and `property` to make all the Unit Tests pass.
+* Complete the code for each `method` and `property` to make all the Unit Tests pass.
 
 ### Solution
 
