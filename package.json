@@ -1,0 +1,23 @@
+{
+  "name": "unit-testing-afternoon",
+  "version": "1.0.0",
+  "description": "<img src=\"https://devmounta.in/img/logowhiteblue.png\" width=\"250\" align=\"right\">",
+  "main": "cart.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jnixon54/unit-testing-afternoon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jnixon54/unit-testing-afternoon/issues"
+  },
+  "homepage": "https://github.com/Jnixon54/unit-testing-afternoon#readme",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
